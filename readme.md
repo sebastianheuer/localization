@@ -1,0 +1,1 @@
+You will need PHP 5.3+ and [the intl extension](http://php.net/manual/de/book.intl.php).
