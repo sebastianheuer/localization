@@ -70,7 +70,7 @@ class TranslatorTest extends \PHPUnit_Framework_TestCase
 
         $this->_localization->expects($this->once())
             ->method('getText')
-            ->will($this->returnValue('{0}'));
+            ->will($this->returnValue('{0, number}'));
 
         $actualString = $this->_translator->getText('foo', array($number));
         $this->assertEquals($expectedString, $actualString);
