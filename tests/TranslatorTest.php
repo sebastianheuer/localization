@@ -5,9 +5,9 @@ use belanur\localization\Translator;
 class TranslatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \belanur\localization\LocalizationInterface
+     * @var \belanur\localization\LanguageInterface
      */
-    protected $_localization;
+    protected $_language;
 
     /**
      * @var \belanur\localization\CountryInterface
@@ -24,19 +24,15 @@ class TranslatorTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_localization = $this->getMockBuilder(
-            'belanur\localization\LocalizationInterface'
+        $this->_language = $this->getMockBuilder(
+            'belanur\localization\LanguageInterface'
         )->getMock();
 
         $this->_country = $this->getMockBuilder(
             'belanur\localization\CountryInterface'
         )->getMock();
 
-        $this->_country->expects($this->any())
-            ->method('getLocalization')
-            ->will($this->returnValue($this->_localization));
-
-        $this->_translator = new Translator($this->_country);
+        $this->_translator = new Translator($this->_country, $this->_language);
     }
 
     /**
@@ -46,7 +42,7 @@ class TranslatorTest extends \PHPUnit_Framework_TestCase
     {
         $localizedString = 'bar';
 
-        $this->_localization->expects($this->once())
+        $this->_language->expects($this->once())
             ->method('getText')
             ->will($this->returnValue($localizedString));
 
@@ -58,17 +54,22 @@ class TranslatorTest extends \PHPUnit_Framework_TestCase
      * @dataProvider numberProvider()
      * @testdox getText() returns correctly formatted numbers
      *
-     * @param string $locale
+     * @param string $country
+     * @param string $language
      * @param float $number
      * @param string $expectedString
      */
-    public function testGetTextReturnsCorrectlyFormattedNumbers($locale, $number, $expectedString)
+    public function testGetTextReturnsCorrectlyFormattedNumbers($country, $language, $number, $expectedString)
     {
         $this->_country->expects($this->once())
-            ->method('getLocale')
-            ->will($this->returnValue($locale));
+            ->method('getCountryCode')
+            ->will($this->returnValue($country));
 
-        $this->_localization->expects($this->once())
+        $this->_language->expects($this->once())
+            ->method('getLanguageCode')
+            ->will($this->returnValue($language));
+
+        $this->_language->expects($this->once())
             ->method('getText')
             ->will($this->returnValue('{0, number}'));
 
@@ -83,8 +84,8 @@ class TranslatorTest extends \PHPUnit_Framework_TestCase
     public static function numberProvider()
     {
         return array(
-            array('en-US', 9999.99, '9,999.99'),
-            array('de-DE', 9999.99, '9.999,99')
+            array('US','en', 9999.99, '9,999.99'),
+            array('DE','de', 9999.99, '9.999,99')
         );
     }
 

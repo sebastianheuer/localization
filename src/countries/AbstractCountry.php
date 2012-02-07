@@ -3,26 +3,18 @@ namespace belanur\localization;
 
 abstract class AbstractCountry implements CountryInterface
 {
-    /**
-     * @var \belanur\localization\LocalizationInterface
-     */
-    protected $_localization;
+    const COUNTRY_CODE = '';
 
-    /**
-     * @param LocalizationInterface $localization
-     */
-    public function __construct(LocalizationInterface $localization)
+    const DEFAULT_LANG = '';
+
+    public function getDefaultLanguage()
     {
-        $this->_localization = $localization;
+        return static::DEFAULT_LANG;
     }
 
-    /**
-     * @return LocalizationInterface
-     */
-    public function getLocalization()
+    public function getCountryCode()
     {
-        return $this->_localization;
+        return static::COUNTRY_CODE;
     }
-
 
 }

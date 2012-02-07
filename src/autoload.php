@@ -8,15 +8,15 @@ spl_autoload_register(
         if ($classes === null) {
             $classes = array(
                 'belanur\\localization\\abstractcountry' => '/countries/AbstractCountry.php',
-                'belanur\\localization\\abstractlocalization' => '/localization/AbstractLocalization.php',
+                'belanur\\localization\\abstractlanguage' => '/languages/AbstractLanguage.php',
                 'belanur\\localization\\countryfactory' => '/countries/CountryFactory.php',
                 'belanur\\localization\\countryinterface' => '/interfaces/CountryInterface.php',
-                'belanur\\localization\\english' => '/localization/English.php',
+                'belanur\\localization\\english' => '/languages/English.php',
                 'belanur\\localization\\factoryinterface' => '/interfaces/FactoryInterface.php',
-                'belanur\\localization\\german' => '/localization/German.php',
+                'belanur\\localization\\german' => '/languages/German.php',
                 'belanur\\localization\\germany' => '/countries/Germany.php',
-                'belanur\\localization\\localizationfactory' => '/localization/LocalizationFactory.php',
-                'belanur\\localization\\localizationinterface' => '/interfaces/LocalizationInterface.php',
+                'belanur\\localization\\languagefactory' => '/languages/LanguageFactory.php',
+                'belanur\\localization\\languageinterface' => '/interfaces/LanguageInterface.php',
                 'belanur\\localization\\translator' => '/Translator.php',
                 'belanur\\localization\\unitedstates' => '/countries/UnitedStates.php'
             );

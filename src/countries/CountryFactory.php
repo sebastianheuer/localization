@@ -7,19 +7,6 @@ namespace belanur\localization;
 class CountryFactory implements FactoryInterface
 {
     /**
-     * @var \belanur\localization\LocalizationInterface
-     */
-    protected $_localization;
-
-    /**
-     * @param LocalizationInterface $localization
-     */
-    public function __construct(LocalizationInterface $localization)
-    {
-        $this->_localization = $localization;
-    }
-
-    /**
      * @param string $type
      * @return \belanur\localization\CountryInterface
      */
@@ -27,10 +14,10 @@ class CountryFactory implements FactoryInterface
     {
         switch ($type) {
             case 'DE':
-                return new Germany($this->_localization);
+                return new Germany();
             case 'US':
             default:
-                return new UnitedStates($this->_localization);
+                return new UnitedStates();
         }
     }
 
