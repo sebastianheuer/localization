@@ -3,10 +3,33 @@ namespace belanur\localization;
 
 class German extends AbstractLanguage
 {
-    const LANGUAGE_CODE = 'de';
+    /**
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return 'de';
+    }
 
-    const FOO = 'Ein anderer Text';
-    const WELCOME = 'Hallo {0}, und herzlich willkommen';
-    const PRICE = 'Dieser Artikel kostet {0,number} EUR';
+    /**
+     * @param string $username
+     * @return string
+     */
+    public function getWelcomeMessage($username)
+    {
+        $text = 'Herzlich Willkommen, {0}';
+        return $this->_getFormattedText($text, array($username));
+    }
+
+    /**
+     * @param string $sku
+     * @param float $price
+     * @return string
+     */
+    public function getPriceInformationMessage($sku, $price)
+    {
+        $text = 'Der Artikel {0} kostet {1,number} EUR';
+        return $this->_getFormattedText($text, array($sku, $price));
+    }
 }
 

@@ -1,34 +1,34 @@
 <?php
 namespace belanur\localization;
 
-class AbstractLanguage implements LanguageInterface
+/**
+ * AbstractLanguage
+ *
+ * <DESCRIPTION>
+ */
+abstract class AbstractLanguage implements LanguageInterface
 {
     /**
-     * a two-digit language code, e.g. 'en'
+     * @var \belanur\localization\MessageFormatter
      */
-    const LANGUAGE_CODE = '';
+    protected $_formatter;
 
     /**
-     * returns a text for $key
-     *
-     * @param string $key
-     * @return mixed
+     * @param \belanur\localization\MessageFormatter $formatter
      */
-    public function getText($key)
+    public function __construct(MessageFormatter $formatter)
     {
-        return constant(get_class($this) . '::' . $key);
+        $this->_formatter = $formatter;
     }
 
     /**
-     * returns a two-digit language code, e.g. 'en'
-     *
+     * @param string $text
+     * @param array $params
      * @return string
      */
-    public function getLanguageCode()
+    protected function _getFormattedText($text, array $params = array())
     {
-        return static::LANGUAGE_CODE;
+        return $this->_formatter->format($text, $params);
     }
-
-
 }
-
+ 

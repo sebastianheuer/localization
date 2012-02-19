@@ -7,6 +7,19 @@ namespace belanur\localization;
 class LanguageFactory implements FactoryInterface
 {
     /**
+     * @var \belanur\localization\MessageFormatter
+     */
+    protected $_formatter;
+
+    /**
+     * @param MessageFormatter $formatter
+     */
+    public function __construct(MessageFormatter $formatter)
+    {
+        $this->_formatter = $formatter;
+    }
+
+    /**
      * @param string $type
      * @return \belanur\localization\LanguageInterface
      */
@@ -14,10 +27,10 @@ class LanguageFactory implements FactoryInterface
     {
         switch ($type) {
             case 'de':
-                return new German();
+                return new German($this->_formatter);
             case 'en':
             default:
-                return new English();
+                return new English($this->_formatter);
         }
     }
 }

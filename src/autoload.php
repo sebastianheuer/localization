@@ -7,18 +7,13 @@ spl_autoload_register(
         static $classes = null;
         if ($classes === null) {
             $classes = array(
-                'belanur\\localization\\abstractcountry' => '/countries/AbstractCountry.php',
                 'belanur\\localization\\abstractlanguage' => '/languages/AbstractLanguage.php',
-                'belanur\\localization\\countryfactory' => '/countries/CountryFactory.php',
-                'belanur\\localization\\countryinterface' => '/interfaces/CountryInterface.php',
                 'belanur\\localization\\english' => '/languages/English.php',
                 'belanur\\localization\\factoryinterface' => '/interfaces/FactoryInterface.php',
                 'belanur\\localization\\german' => '/languages/German.php',
-                'belanur\\localization\\germany' => '/countries/Germany.php',
                 'belanur\\localization\\languagefactory' => '/languages/LanguageFactory.php',
                 'belanur\\localization\\languageinterface' => '/interfaces/LanguageInterface.php',
-                'belanur\\localization\\translator' => '/Translator.php',
-                'belanur\\localization\\unitedstates' => '/countries/UnitedStates.php'
+                'belanur\\localization\\messageformatter' => '/MessageFormatter.php'
             );
         }
         $cn = strtolower($class);

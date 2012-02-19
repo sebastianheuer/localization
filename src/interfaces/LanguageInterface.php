@@ -3,15 +3,25 @@ namespace belanur\localization;
 
 interface LanguageInterface
 {
-    const WELCOME = 'Hello and welcome, {0}';
-    const FOO = 'Some other text';
-    const PRICE = 'This product costs {0,number} EUR';
+    /**
+     * returns the two-digit language code, e.g. 'en'
+     *
+     * @abstract
+     * @return string
+     */
+    public function getLanguageCode();
 
     /**
      * @abstract
-     * @param string $key
+     * @param string $username
+     * @return string
      */
-    public function getText($key);
+    public function getWelcomeMessage($username);
 
-    public function getLanguageCode();
+    /**
+     * @param string $sku
+     * @param float $price
+     * @return string
+     */
+    public function getPriceInformationMessage($sku, $price);
 }
